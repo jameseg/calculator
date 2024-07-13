@@ -25,7 +25,8 @@
   color: whitesmoke;
   font-size: 48px;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .buttons-container {

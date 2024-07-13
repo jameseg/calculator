@@ -288,19 +288,19 @@ function operate(firstNumber, secondNumber, operator) {
   console.log(operator)
   switch (operator) {
     case "/":
-      display.textContent = divide(firstNumber, secondNumber)
+      display.textContent = divide(firstNumber, secondNumber).toString().substring(0, 9)
       calculationAsFirstValue = display.textContent
       break;
     case "*":
-      display.textContent = multiply(firstNumber, secondNumber)
+      display.textContent = multiply(firstNumber, secondNumber).toString().substring(0, 9)
       calculationAsFirstValue = display.textContent
       break;
     case "-":
-      display.textContent = subtract(firstNumber, secondNumber)
+      display.textContent = subtract(firstNumber, secondNumber).toString().substring(0, 9)
       calculationAsFirstValue = display.textContent
       break;
     case "+":
-      display.textContent = add(firstNumber, secondNumber)
+      display.textContent = add(firstNumber, secondNumber).toString().substring(0, 9)
       calculationAsFirstValue = display.textContent
       break;
 
