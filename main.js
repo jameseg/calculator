@@ -4,6 +4,7 @@ let operator = ""
 let displayValue = "0"
 let operatorFlag = false;
 let calculationAsFirstValue = "";
+let minusToggle = ""
 
 
 const acButton = document.querySelector("#ac-btn")
@@ -23,6 +24,7 @@ const multiplyButton = document.querySelector("#multiply-button")
 const subtractButton = document.querySelector("#subtract-button")
 const addButton = document.querySelector("#add-button")
 const equalsButton = document.querySelector("#equals-button")
+const minusButton = document.querySelector("#minus-button")
 
 const display = document.querySelector(".display")
 display.textContent = displayValue;
@@ -200,6 +202,18 @@ function addButtonListeners() {
       displayValue = display.textContent
       if (operatorFlag) {
         y = displayValue
+      }
+    }
+  })
+
+  minusButton.addEventListener("click", () => {
+    if (displayValue === "0" || startsWithOperator(display.textContent)) {
+      // do nothing
+    } else {
+      if (!minusToggle) {
+        console.log('hi')
+        display.textContent = "-" + display.textContent
+        displayValue = display.textContent
       }
     }
   })
