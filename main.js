@@ -26,6 +26,7 @@ const addButton = document.querySelector("#add-button")
 const equalsButton = document.querySelector("#equals-button")
 const minusButton = document.querySelector("#minus-button")
 const moduloButton = document.querySelector("#modulo-button")
+const decimalButton = document.querySelector("#decimal-button")
 
 const display = document.querySelector(".display")
 display.textContent = displayValue;
@@ -219,6 +220,24 @@ function addButtonListeners() {
     }
   })
 
+  decimalButton.addEventListener("click", () => {
+    if (displayValue === "0" || startsWithOperator(display.textContent)) {
+      display.textContent = "0."
+      displayValue = display.textContent
+      if (operatorFlag) {
+        y = displayValue
+      }
+    } else {
+      if (!display.textContent.includes(".")) {
+        display.textContent += "."
+        displayValue = display.textContent
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+    }
+  })
+
   divideButton.addEventListener("click", () => {
     if (calculationAsFirstValue) {
       x = calculationAsFirstValue
@@ -294,15 +313,15 @@ function addButtonListeners() {
 }
 
 function add(a, b) {
-  return +a + +b
+  return (+a + +b)
 }
 
 function subtract(a, b) {
-  return +a - +b
+  return (+a - +b)
 }
 
 function multiply(a, b) {
-  return +a * +b
+  return (+a * +b)
 }
 
 function divide(a, b) {
@@ -326,23 +345,23 @@ function operate(firstNumber, secondNumber, operator) {
         break;
       }
     case "*":
-      display.textContent = multiply(firstNumber, secondNumber).toString().substring(0, 9)
+      display.textContent = parseFloat(multiply(firstNumber, secondNumber).toString().substring(0, 9))
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
     case "-":
-      display.textContent = subtract(firstNumber, secondNumber).toString().substring(0, 9)
+      display.textContent = parseFloat(subtract(firstNumber, secondNumber).toString().substring(0, 9))
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
     case "+":
-      display.textContent = add(firstNumber, secondNumber).toString().substring(0, 9)
+      display.textContent = parseFloat(add(firstNumber, secondNumber).toString().substring(0, 9))
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
 
     case "%":
-      display.textContent = modulo(firstNumber, secondNumber).toString().substring(0, 9)
+      display.textContent = parseFloat(modulo(firstNumber, secondNumber).toString().substring(0, 9))
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
