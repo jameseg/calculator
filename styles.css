@@ -7,7 +7,7 @@
   flex-direction: column;
   flex-grow: 1;
   border-width: 1px;
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-radius: 12px;
   height: 320px;
@@ -52,6 +52,7 @@ button {
   width: 60px;
   flex-grow: 1;
   border-width: 1px;
+  border-color: grey;
   color: #D4D4D2;
   font-weight: bold;
   background-color: #7D7D7D;
