@@ -40,7 +40,6 @@ function addButtonListeners() {
   })
 
   sevenButton.addEventListener("click", () => {
-    console.log(operatorFlag)
     if (displayValue === "0" || startsWithOperator(display.textContent)) {
       display.textContent = "7"
       displayValue = display.textContent
@@ -283,14 +282,20 @@ function divide(a, b) {
 }
 
 function operate(firstNumber, secondNumber, operator) {
-  console.log(firstNumber)
-  console.log(secondNumber)
-  console.log(operator)
   switch (operator) {
     case "/":
-      display.textContent = divide(firstNumber, secondNumber).toString().substring(0, 9)
-      calculationAsFirstValue = display.textContent
-      break;
+      console.log(firstNumber, secondNumber, operator)
+      console.log(typeof secondNumber)
+      if (secondNumber === "0") {
+        console.log('hi')
+        display.textContent = "nice try :)"
+        break;
+      } else {
+        display.textContent = divide(firstNumber, secondNumber).toString().substring(0, 9)
+        calculationAsFirstValue = display.textContent
+        break;
+      }
+
     case "*":
       display.textContent = multiply(firstNumber, secondNumber).toString().substring(0, 9)
       calculationAsFirstValue = display.textContent
