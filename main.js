@@ -25,6 +25,7 @@ const subtractButton = document.querySelector("#subtract-button")
 const addButton = document.querySelector("#add-button")
 const equalsButton = document.querySelector("#equals-button")
 const minusButton = document.querySelector("#minus-button")
+const moduloButton = document.querySelector("#modulo-button")
 
 const display = document.querySelector(".display")
 display.textContent = displayValue;
@@ -211,9 +212,9 @@ function addButtonListeners() {
       // do nothing
     } else {
       if (!minusToggle) {
-        console.log('hi')
         display.textContent = "-" + display.textContent
         displayValue = display.textContent
+        y = displayValue
       }
     }
   })
@@ -270,6 +271,19 @@ function addButtonListeners() {
     }
   })
 
+  moduloButton.addEventListener("click", () => {
+    if (calculationAsFirstValue) {
+      x = calculationAsFirstValue
+    } else {
+      x = displayValue
+    }
+    if (displayValue !== "0") {
+      display.textContent = "%"
+      operator = display.textContent
+      operatorFlag = true
+    }
+  })
+
   equalsButton.addEventListener("click", () => {
     // call operation
     operate(x, y, operator)
@@ -295,31 +309,41 @@ function divide(a, b) {
   return +a / +b
 }
 
+function modulo(a, b) {
+  return +a % +b
+}
+
 function operate(firstNumber, secondNumber, operator) {
   switch (operator) {
     case "/":
-      console.log(firstNumber, secondNumber, operator)
-      console.log(typeof secondNumber)
       if (secondNumber === "0") {
-        console.log('hi')
         display.textContent = "nice try :)"
         break;
       } else {
         display.textContent = divide(firstNumber, secondNumber).toString().substring(0, 9)
         calculationAsFirstValue = display.textContent
+        displayValue = display.textContent
         break;
       }
-
     case "*":
       display.textContent = multiply(firstNumber, secondNumber).toString().substring(0, 9)
+      displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
     case "-":
       display.textContent = subtract(firstNumber, secondNumber).toString().substring(0, 9)
+      displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
     case "+":
       display.textContent = add(firstNumber, secondNumber).toString().substring(0, 9)
+      displayValue = display.textContent
+      calculationAsFirstValue = display.textContent
+      break;
+
+    case "%":
+      display.textContent = modulo(firstNumber, secondNumber).toString().substring(0, 9)
+      displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
 
@@ -329,7 +353,7 @@ function operate(firstNumber, secondNumber, operator) {
 }
 
 function startsWithOperator(content) {
-  if (content.startsWith("/") || content.startsWith("*") || content.startsWith("-") || content.startsWith("+")) {
+  if (content.startsWith("/") || content.startsWith("*") || content.startsWith("-") || content.startsWith("+") || content.startsWith("%")) {
     return true
   }
 }
