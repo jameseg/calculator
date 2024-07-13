@@ -41,6 +41,7 @@ function addButtonListeners() {
     y = ""
     operator = ""
     calculationAsFirstValue = ""
+    acButton.blur()
   })
 
   sevenButton.addEventListener("click", () => {
@@ -345,9 +346,11 @@ function operate(firstNumber, secondNumber, operator) {
         break;
       }
     case "*":
+      console.log(firstNumber, secondNumber)
       display.textContent = parseFloat(multiply(firstNumber, secondNumber).toString().substring(0, 9))
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
+      console.log(display.textContent)
       break;
     case "-":
       display.textContent = parseFloat(subtract(firstNumber, secondNumber).toString().substring(0, 9))
@@ -359,13 +362,11 @@ function operate(firstNumber, secondNumber, operator) {
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
-
     case "%":
       display.textContent = parseFloat(modulo(firstNumber, secondNumber).toString().substring(0, 9))
       displayValue = display.textContent
       calculationAsFirstValue = display.textContent
       break;
-
     default:
       break;
   }
@@ -377,6 +378,296 @@ function startsWithOperator(content) {
   }
 }
 
+
+
 addButtonListeners();
 
+window.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "Backspace":
+      // Do something for "down arrow" key press.
+      display.textContent = display.textContent.substring(0, display.textContent.length - 1)
+      if (display.textContent.length === 0) {
+        display.textContent = "0"
+        displayValue = "0"
+      }
+      break;
+    case "7":
+      // Do something for "down arrow" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "7"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "7"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "8":
+      // Do something for "up arrow" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "8"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "8"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "9":
+      // Do something for "left arrow" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "9"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "9"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "4":
+      // Do something for "right arrow" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "4"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "4"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "5":
+      // Do something for "enter" or "return" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "5"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "5"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "6":
+      // Do something for "space" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "6"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "6"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "1":
+      // Do something for "esc" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "1"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "1"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "2":
+      // Do something for "esc" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "2"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "2"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "3":
+      // Do something for "esc" key press.
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "3"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+
+      } else {
+        display.textContent += "3"
+        displayValue = display.textContent
+
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case "0":
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "0"
+        displayValue = display.textContent
+        if (operatorFlag) {
+          y = displayValue
+        }
+      } else {
+        display.textContent += "0"
+        displayValue = display.textContent
+        if (operatorFlag) {
+          y = displayValue
+        }
+      }
+      break;
+    case ".":
+      if (displayValue === "0" || startsWithOperator(display.textContent)) {
+        display.textContent = "0."
+        displayValue = display.textContent
+        if (operatorFlag) {
+          y = displayValue
+        }
+      } else {
+        if (!display.textContent.includes(".")) {
+          display.textContent += "."
+          displayValue = display.textContent
+          if (operatorFlag) {
+            y = displayValue
+          }
+        }
+      }
+      break;
+    case "/":
+      if (calculationAsFirstValue) {
+        x = calculationAsFirstValue
+      } else {
+        x = displayValue
+      }
+      if (displayValue !== "0") {
+        display.textContent = "/"
+        operator = display.textContent
+        operatorFlag = true
+      }
+      break;
+    case "*":
+
+      if (calculationAsFirstValue) {
+        x = calculationAsFirstValue
+      } else {
+        x = displayValue
+      }
+      if (displayValue !== "0") {
+        display.textContent = "*"
+        operator = display.textContent
+        operatorFlag = true
+      }
+
+      console.log(x)
+      console.log(y)
+      break;
+    case "-":
+      if (calculationAsFirstValue) {
+        x = calculationAsFirstValue
+      } else {
+        x = displayValue
+      }
+      if (displayValue !== "0") {
+        display.textContent = "-"
+        operator = display.textContent
+        operatorFlag = true
+      }
+
+      break;
+    case "+":
+      if (calculationAsFirstValue) {
+        x = calculationAsFirstValue
+      } else {
+        x = displayValue
+      }
+      if (displayValue !== "0") {
+        display.textContent = "+"
+        operator = display.textContent
+        operatorFlag = true
+      }
+      break;
+    case "%":
+      if (calculationAsFirstValue) {
+        x = calculationAsFirstValue
+      } else {
+        x = displayValue
+      }
+      if (displayValue !== "0") {
+        display.textContent = "%"
+        operator = display.textContent
+        operatorFlag = true
+      }
+      break;
+    case "Enter":
+      operate(x, y, operator)
+      console.log(x, y)
+      operatorFlag = false
+      break;
+
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+})
 
